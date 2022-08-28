@@ -6,6 +6,15 @@ app.use(express.text());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+// Middleware
+app.use((req,res,next) => {
+    console.log('Página URL:', req.url);
+    console.log('Request Method:', req.method);
+    console.log('Request Headers:', req.headers);
+    console.log('Request Body:', req.body);
+    next();
+})
+
 
 
 app.get('/', (req, res) => {
@@ -79,6 +88,10 @@ app.get('/buscar', (req, res) => {
         return res.send('no encontrado');
     }
 });
+
+
+
+
 
 
 // Si visita una URl que no existe...
